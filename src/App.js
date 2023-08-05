@@ -6,14 +6,11 @@ import CountryDetails from './components/CountryDetails';
 import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 
 function App() {
   const [loading, setLoading] = useState(true)
   const [selectedCountry, setSelectedCountry] = useState([])
-  const [countryCode, setCountrycode] = useState("")
-    
-  const { alpha3Code } = useParams()
+
   
   useEffect(() => {
     axios.get('https://ih-countries-api.herokuapp.com/countries')
@@ -24,19 +21,14 @@ function App() {
     })
   }, [])
 
-  useEffect(()=> {
-    if ( alpha3Code  !== null) {
-      console.log(alpha3Code)
-    }
-  }, [alpha3Code ])
 
   return (<>{loading ? <div>Loading...</div> :     <div className="App">
   <Navbar />
   <div className="container">
     <div className="row">
-      <CountriesList countries={countries} setCountrycode={setCountrycode} />
+      <CountriesList countries={countries}/>
       <Routes>
-        <Route path="/:alpha3Code" element={<CountryDetails countries={countries} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} />} /> 
+        <Route path="/:alpha3Code" element={<CountryDetails selectedCountry={selectedCountry} />} /> 
       </Routes>
     </div>
   </div>

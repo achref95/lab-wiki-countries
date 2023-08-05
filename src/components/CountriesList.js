@@ -1,6 +1,4 @@
-
-
-const CountriesList = ({countries, setCountrycode }) => {
+const CountriesList = ({ countries }) => {
 
     
   return (
