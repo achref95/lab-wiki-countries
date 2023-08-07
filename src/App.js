@@ -22,19 +22,21 @@ function App() {
   }, [])
 
 
-  return (<>{loading ? <div>Loading...</div> :     <div className="App">
-  <Navbar />
-  <div className="container">
-    <div className="row">
-      <CountriesList countries={countries}/>
-      <Routes>
-        <Route path="/:alpha3Code" element={<CountryDetails selectedCountry={selectedCountry} />} /> 
-      </Routes>
-    </div>
-  </div>
-</div>}
-</>
-
+  return (
+  <>
+    {loading ? <div>Loading...</div> :     
+    <div className="App">
+      <Navbar />
+      <div className="container">
+        <div className="row">
+          <CountriesList countries={countries}/>
+            <Routes>
+              <Route path="/:alpha3Code" element={<CountryDetails selectedCountry={selectedCountry} />} /> 
+            </Routes>
+          </div>
+        </div>
+    </div>}
+  </>
   );
 }
 
